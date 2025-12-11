@@ -1,2 +1,2 @@
-# Gooxs_Test_Website
-Gooxs Test Website
+# Gooxs_Website
+Gooxs Website
