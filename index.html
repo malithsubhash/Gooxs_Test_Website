@@ -37,6 +37,60 @@
         </nav>
     </header>
 
+    <!-- Image Slider Section -->
+    <section class="game-slider">
+        <div class="slider-container">
+            <div class="slide active">
+                <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=1920&q=80" alt="Gaming Setup">
+                <div class="slide-overlay">
+                    <div class="slide-content">
+                        <h2>Epic Gaming Experiences</h2>
+                        <p>Immersive worlds that captivate players</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=1920&q=80" alt="Game Development">
+                <div class="slide-overlay">
+                    <div class="slide-content">
+                        <h2>Cutting-Edge Technology</h2>
+                        <p>Powered by the latest game engines</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1920&q=80" alt="Gaming Controller">
+                <div class="slide-overlay">
+                    <div class="slide-content">
+                        <h2>Cross-Platform Gaming</h2>
+                        <p>Play anywhere, anytime</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=1920&q=80" alt="Esports">
+                <div class="slide-overlay">
+                    <div class="slide-content">
+                        <h2>Competitive Excellence</h2>
+                        <p>Built for esports and competitive play</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slider Controls -->
+        <button class="slider-nav prev" onclick="changeSlide(-1)">‹</button>
+        <button class="slider-nav next" onclick="changeSlide(1)">›</button>
+        
+        <!-- Slider Indicators -->
+        <div class="slider-indicators">
+            <span class="indicator active" onclick="goToSlide(0)"></span>
+            <span class="indicator" onclick="goToSlide(1)"></span>
+            <span class="indicator" onclick="goToSlide(2)"></span>
+            <span class="indicator" onclick="goToSlide(3)"></span>
+        </div>
+    </section>
+
     <main>
         <section id="home" class="hero">
             <div class="particles" id="particles"></div>
@@ -237,6 +291,45 @@
     <div class="scroll-to-top" id="scrollTop">↑</div>
 
     <script>
+        // Slider Functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const indicators = document.querySelectorAll('.indicator');
+        let autoSlideInterval;
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            indicators.forEach(indicator => indicator.classList.remove('active'));
+            
+            currentSlide = (n + slides.length) % slides.length;
+            
+            slides[currentSlide].classList.add('active');
+            indicators[currentSlide].classList.add('active');
+        }
+
+        function changeSlide(direction) {
+            showSlide(currentSlide + direction);
+            resetAutoSlide();
+        }
+
+        function goToSlide(n) {
+            showSlide(n);
+            resetAutoSlide();
+        }
+
+        function autoSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function resetAutoSlide() {
+            clearInterval(autoSlideInterval);
+            autoSlideInterval = setInterval(autoSlide, 5000);
+        }
+
+        // Start auto sliding
+        autoSlideInterval = setInterval(autoSlide, 5000);
+
         // Loading Screen
         window.addEventListener('load', () => {
             setTimeout(() => {
@@ -290,10 +383,10 @@
         window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
             if (window.scrollY > 100) {
-                header.style.background = 'rgba(10, 10, 10, 0.95)';
-                header.style.boxShadow = '0 5px 30px rgba(0, 255, 159, 0.1)';
+                header.style.background = 'rgba(20, 20, 22, 0.95)';
+                header.style.boxShadow = '0 5px 30px rgba(255,255,255,0.04)';
             } else {
-                header.style.background = 'rgba(10, 10, 10, 0.8)';
+                header.style.background = 'rgba(20, 20, 22, 0.8)';
                 header.style.boxShadow = 'none';
             }
         });
@@ -343,7 +436,8 @@
             
             setTimeout(() => {
                 button.textContent = '✓ Message Sent!';
-                button.style.background = '#00ff9f';
+                button.style.background = '#fff';
+                button.style.color = '#18191c';
                 setTimeout(() => {
                     button.textContent = originalText;
                     button.style.opacity = '1';
