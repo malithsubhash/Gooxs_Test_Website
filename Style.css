@@ -352,9 +352,9 @@ nav {
     text-decoration: none;
     border-radius: 50px;
     font-weight: bold;
-    transition: color 0.3s, background 0.3s, border 0.3s;
+    transition: color 0.3s, background 0.3s, ;
     box-shadow: none;
-    border: 1.5px solid #232325;
+    border: 2px solid #232325;
     position: relative;
     overflow: hidden;
 }
@@ -370,7 +370,7 @@ nav {
 .cta-button:hover {
     background: #fff;
     color: #18191c;
-    border: 1.5px solid #fff;
+    border: 2px solid #fff;
 }
 
 /* Animated black line transition for cta-button */
@@ -393,6 +393,7 @@ nav {
 .cta-button-secondary:hover {
     background: #fff;
     color: #18191c;
+    border: 2px solid #fff;
 }
 
 /* Particle Effect */
