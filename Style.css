@@ -456,6 +456,28 @@ nav {
     overflow: hidden;
 }
 
+/* White line hover effect for service-card and portfolio-item */
+.service-card, .portfolio-item {
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card::after, .portfolio-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #ffffff, transparent);
+    transition: left 0.6s ease;
+    z-index: 2;
+}
+
+.service-card:hover::after, .portfolio-item:hover::after {
+    left: 100%;
+}
+
 .stat-item::before {
     content: '';
     position: absolute;
